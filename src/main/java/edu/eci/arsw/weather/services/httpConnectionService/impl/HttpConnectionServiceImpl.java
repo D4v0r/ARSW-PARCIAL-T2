@@ -14,7 +14,7 @@ public class HttpConnectionServiceImpl implements HttpConnectionService {
     public JSONObject getWeatherInfoByCity(String cityName) throws WeatherException {
         try{
             HttpResponse<String> response = Unirest
-                    .get("api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=e2f238a657505b6ea2f13e452eec4a86")
+                    .get("https://api.openweathermap.org/data/2.5/weather?q="+cityName+"&appid=e2f238a657505b6ea2f13e452eec4a86")
                     .asString();
             return new JSONObject(response.getBody());
         }catch (UnirestException e){

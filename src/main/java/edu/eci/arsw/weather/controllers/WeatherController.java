@@ -24,7 +24,7 @@ public class WeatherController {
             WeatherInfo  responseObject = services.getWeatherInfoByCityName(cityName);
             return new ResponseEntity<>(responseObject, HttpStatus.OK);
         }catch (WeatherException e){
-            return new ResponseEntity<>("Error en el Servidor", HttpStatus.INTERNAL_SERVER_ERROR);
+            return new ResponseEntity<>(e.getLocalizedMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
