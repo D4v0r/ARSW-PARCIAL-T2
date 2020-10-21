@@ -6,7 +6,9 @@ import com.mashape.unirest.http.exceptions.UnirestException;
 import edu.eci.arsw.weather.services.WeatherException;
 import edu.eci.arsw.weather.services.httpConnectionService.HttpConnectionService;
 import org.json.JSONObject;
+import org.springframework.stereotype.Service;
 
+@Service
 public class HttpConnectionServiceImpl implements HttpConnectionService {
     @Override
     public JSONObject getWeatherInfoByCity(String cityName) throws WeatherException {

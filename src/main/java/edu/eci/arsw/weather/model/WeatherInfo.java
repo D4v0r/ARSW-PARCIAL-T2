@@ -21,7 +21,7 @@ public class WeatherInfo {
     private Temperature main;
 
     @Setter @Getter
-    private String visibility;
+    private int visibility;
 
     @Setter @Getter
     private Wind wind;
