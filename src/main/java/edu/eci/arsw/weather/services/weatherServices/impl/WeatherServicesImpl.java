@@ -27,6 +27,7 @@ public class WeatherServicesImpl implements WeatherServices {
                 return (WeatherInfo) cache.get(cityName);
             } else {
             JSONObject object = httpConnectionService.getWeatherInfoByCity(cityName);
+                System.out.println(object);
             WeatherInfo query = new WeatherInfo(
                     gson.fromJson(object.getJSONObject("coord").toString(), Coord.class),
                     gson.fromJson(object.getJSONObject("weather").toString(), Weather.class),
@@ -41,6 +42,7 @@ public class WeatherServicesImpl implements WeatherServices {
                     object.getString("name"),
                     object.getInt("cod")
             );
+            cache.add(cityName, query);
             return query;
             }
         }catch (Exception e){
