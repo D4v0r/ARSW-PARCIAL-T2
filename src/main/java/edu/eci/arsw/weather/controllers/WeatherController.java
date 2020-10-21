@@ -11,13 +11,25 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+/**
+ * The type Weather controller.
+ */
 @RestController
 @RequestMapping("/api/weather")
 public class WeatherController {
 
+    /**
+     * The Services.
+     */
     @Autowired
     WeatherServices services;
 
+    /**
+     * Get weather info by city name response entity.
+     *
+     * @param cityName the city name
+     * @return the response entity
+     */
     @GetMapping("{cityName}")
     public ResponseEntity<?> getWeatherInfoByCityName(@PathVariable String cityName){
         try{
