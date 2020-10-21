@@ -22,25 +22,26 @@ public class WeatherServicesImpl implements WeatherServices {
     @Override
     public WeatherInfo getWeatherInfoByCityName(String cityName) throws WeatherException {
         Gson gson = new Gson();
+        System.out.println("AQUI ESTOY");
         try{
             if (cache.get(cityName) != null){
                 return (WeatherInfo) cache.get(cityName);
             } else {
-            JSONObject object = httpConnectionService.getWeatherInfoByCity(cityName);
+                JSONObject object = httpConnectionService.getWeatherInfoByCity(cityName);
                 System.out.println(object);
-            WeatherInfo query = new WeatherInfo(
-                    gson.fromJson(object.getJSONObject("coord").toString(), Coord.class),
-                    gson.fromJson(object.getJSONObject("weather").toString(), Weather.class),
-                    object.getString("base"),
-                    gson.fromJson(object.getJSONObject("main").toString(), Temperature.class),
-                    object.getInt("visibility"),
-                    gson.fromJson(object.getJSONObject("wind").toString(), Wind.class),
-                    gson.fromJson(object.getJSONObject("clouds").toString(), Clouds.class),
-                    object.getInt("dt"),
-                    object.getInt("timezone"),
-                    object.getInt("id"),
-                    object.getString("name"),
-                    object.getInt("cod")
+                WeatherInfo query = new WeatherInfo(
+                        gson.fromJson(object.getJSONObject("coord").toString(), Coord.class),
+                        gson.fromJson(object.getJSONObject("weather").toString(), Weather.class),
+                        object.getString("base"),
+                        gson.fromJson(object.getJSONObject("main").toString(), Temperature.class),
+                        object.getInt("visibility"),
+                        gson.fromJson(object.getJSONObject("wind").toString(), Wind.class),
+                        gson.fromJson(object.getJSONObject("clouds").toString(), Clouds.class),
+                        object.getInt("dt"),
+                        object.getInt("timezone"),
+                        object.getInt("id"),
+                        object.getString("name"),
+                        object.getInt("cod")
             );
             cache.add(cityName, query);
             return query;
